@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  db_connector:
+    #image: postgres:15.4-alpine3.18
+    container_name: db_connector
+    build:
+      context: .
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - internal
+    volumes:
+      - ../:/db_connector/
+    environment:
+      DB_HOST: "postgres"
+      DB_PORT: "5432"
+      DB_NAME: "potato"
+      DB_USER: "potato"
+      DB_PASSWORD: "potato"
+
+networks:
+  internal:
+    external: true
